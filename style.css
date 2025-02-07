@@ -1,0 +1,67 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+header {
+    background-color: #000000;
+    color: white;
+    padding: 15px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.banner {
+    background: url('shoppingimg.jpg') no-repeat center;
+    background-size: cover;
+    padding: 180px;
+    color: white;
+}
+.categories {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 20px;
+    align-items: center;
+}
+
+.category {
+    text-align: center;
+}
+
+.category img {
+    width: 250px;
+    height: 300px;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.category:hover img {
+    transform: scale(1.1);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 5px;
+    background-color:#ded3d0;
+    font-size: 16px;
+    font-weight: bold;
+    width: 100%;
+}
