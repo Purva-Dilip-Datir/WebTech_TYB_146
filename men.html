@@ -21,32 +21,75 @@
 
     <div class="products-wrapper">
         <section class="products-container">
-            <div class="product">
+            <div class="product" data-name="Formal Shirt" data-price="40">
                 <img src="formal.jpg" alt="Formal Shirt">
                 <button class="cart-btn">Add to Cart</button>
             </div>
-            <div class="product">
+            <div class="product" data-name="Casual Shirt" data-price="30">
                 <img src="shirt.jpg" alt="Casual Shirt">
                 <button class="cart-btn">Add to Cart</button>
             </div>
-            <div class="product">
+            <div class="product" data-name="T-Shirt" data-price="25">
                 <img src="tshirt.jpg" alt="T-Shirt">
                 <button class="cart-btn">Add to Cart</button>
             </div>
-            <div class="product">
+            <div class="product" data-name="Jumpsuit" data-price="50">
                 <img src="jumpsuit.jpg" alt="Jumpsuit">
                 <button class="cart-btn">Add to Cart</button>
             </div>
-            <div class="product">
+            <div class="product" data-name="Wedding Suit" data-price="100">
                 <img src="wed.jpg" alt="Wedding Suit">
-                <button class="cart-btn">Add to Cart</button>
-            </div>
-            <div class="product">
-                <img src="wedding.jpg" alt="Groom Suit">
                 <button class="cart-btn">Add to Cart</button>
             </div>
         </section>
     </div>
+    
+    <div class="cart">
+        <h2>Shopping Cart</h2>
+        <ul id="cart-items"></ul>
+        <p>Total: $<span id="cart-total">0</span></p>
+        <button id="checkout-btn">Checkout</button>
+    </div>
+    
+    <script>
+        let cart = [];
+
+        document.querySelectorAll(".cart-btn").forEach(button => {
+            button.addEventListener("click", function() {
+                let product = this.parentElement;
+                let name = product.getAttribute("data-name");
+                let price = parseFloat(product.getAttribute("data-price"));
+                cart.push({ name, price });
+                updateCart();
+            });
+        });
+
+        function updateCart() {
+            let cartList = document.getElementById("cart-items");
+            let total = 0;
+            cartList.innerHTML = "";
+            cart.forEach(item => {
+                let li = document.createElement("li");
+                li.textContent = `${item.name} - $${item.price}`;
+                cartList.appendChild(li);
+                total += item.price;
+            });
+            document.getElementById("cart-total").textContent = total;
+        }
+
+        document.getElementById("checkout-btn").addEventListener("click", function() {
+            if (cart.length === 0) {
+                alert("Your cart is empty!");
+                return;
+            }
+            let receipt = "Receipt:\n";
+            cart.forEach(item => {
+                receipt += `${item.name} - $${item.price}\n`;
+            });
+            receipt += `Total: $${document.getElementById("cart-total").textContent}`;
+            alert(receipt);
+        });
+    </script>
 
     <footer>
         <p>© 2025 Your Choice Fashion Store</p>
